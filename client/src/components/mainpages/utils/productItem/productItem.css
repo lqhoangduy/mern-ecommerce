@@ -4,9 +4,16 @@
   overflow: hidden;
   min-height: 500px;
   padding: 15px;
-  box-shadow: 0 0 15px #ddd;
+  box-shadow: 0 1px 20px 0 rgba(0, 0, 0, 0.08);
   margin: 10px 0;
   position: relative;
+  transition: transform linear 0.2s;
+  will-change: transform;
+}
+
+.product_card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 1px 20px 0 rgba(0, 0, 0, 0.05);
 }
 
 .product_card img {

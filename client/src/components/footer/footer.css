@@ -31,6 +31,10 @@
   margin-bottom: 5px;
 }
 
+.footer-item:hover {
+  opacity: 0.8;
+}
+
 .footer-item a {
   color: #777;
 }
@@ -93,4 +97,13 @@
 .footer-socials,
 .footer-policy {
   margin-top: 20px;
+}
+
+.footer-policy:hover {
+  opacity: 0.8;
+}
+
+.socials-wrapper:hover {
+  cursor: pointer;
+  background: #111;
 }
