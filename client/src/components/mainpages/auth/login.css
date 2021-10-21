@@ -3,6 +3,7 @@
   border-radius: 3px;
   padding: 30px;
   margin: 50px auto;
+  min-height: 600px;
 }
 
 .login-page h2 {

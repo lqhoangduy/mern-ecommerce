@@ -5,6 +5,7 @@
   flex-wrap: wrap;
   padding: 50px;
   font-size: 150%;
+  min-height: 600px;
 }
 
 .detail img {

@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { DataProvider } from './GlobalState';
 import Header from './components/headers/Header';
 import MainPages from './components/mainpages/Pages';
-import SlideShowList from './components/slideshow-gallery/SlideShowList';
+import Footer from './components/footer/Footer';
 
 function App() {
   return (
@@ -11,8 +11,10 @@ function App() {
       <Router>
         <div className='App'>
           <Header />
-          <SlideShowList />
-          <MainPages />
+          <div className='mainpage'>
+            <MainPages />
+          </div>
+          <Footer />
         </div>
       </Router>
     </DataProvider>

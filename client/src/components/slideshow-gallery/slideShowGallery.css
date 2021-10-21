@@ -8,6 +8,7 @@
 .lp-slideshow-gallery {
   width: 100%;
   margin: 50px 0;
+  padding: 0 20px;
 }
 
 .lp-slideshow-gallery > .container {

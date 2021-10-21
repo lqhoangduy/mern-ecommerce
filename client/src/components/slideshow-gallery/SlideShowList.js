@@ -6,7 +6,7 @@ import slideshow3 from './images/slideshow3.jpg';
 
 const collection = [
   { src: slideshow1, caption: 'Fear of God' },
-  { src: slideshow2, caption: 'Vintage' },
+  { src: slideshow2, caption: 'Essentials' },
   { src: slideshow3, caption: 'FG7C' },
 ];
 

@@ -5,6 +5,7 @@ import Loading from '../utils/loading/Loading';
 import axios from 'axios';
 import Filters from './Filters';
 import LoadMore from './LoadMore';
+import SlideShowList from '../../slideshow-gallery/SlideShowList';
 
 function Products() {
   const state = useContext(GlobalState);
@@ -77,6 +78,7 @@ function Products() {
     );
   return (
     <>
+      <SlideShowList />
       <Filters />
       {isAdmin && (
         <div className='delete-all'>

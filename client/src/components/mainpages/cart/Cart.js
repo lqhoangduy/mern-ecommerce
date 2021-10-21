@@ -84,7 +84,13 @@ function Cart() {
 
   if (cart.length === 0)
     return (
-      <h6 style={{ textAlign: 'center', fontSize: '24px', color: '#555' }}>
+      <h6
+        style={{
+          textAlign: 'center',
+          fontSize: '24px',
+          color: '#555',
+          minHeight: '600px',
+        }}>
         Giỏ hàng trống
       </h6>
     );
