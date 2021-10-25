@@ -1,5 +1,10 @@
 import React from 'react';
-import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
+import {
+  PayPalScriptProvider,
+  PayPalButtons,
+  usePayPalScriptReducer,
+} from '@paypal/react-paypal-js';
+import Loading from '../../utils/loading/Loading';
 
 function PaypalButton(props) {
   const initialOptions = {
@@ -32,8 +37,14 @@ function PaypalButton(props) {
     console.log(err.toString());
   };
 
+  const LoadingRender = () => {
+    const [{ isPending }] = usePayPalScriptReducer();
+    return isPending ? <Loading /> : null;
+  };
+
   return (
     <PayPalScriptProvider options={initialOptions}>
+      <LoadingRender />
       <PayPalButtons
         style={{ layout: 'horizontal' }}
         createOrder={createOrder}
