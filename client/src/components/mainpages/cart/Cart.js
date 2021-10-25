@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { GlobalState } from '../../../GlobalState';
 import axios from 'axios';
-import PaypalButton from './PaypalButton';
+import PaypalButton from './Paypal/PaypalButton';
+import ZaloPayButton from './ZaloPay/ZaloPayButton';
 
 function Cart() {
   const state = useContext(GlobalState);
@@ -67,7 +68,8 @@ function Cart() {
   };
 
   const tranSuccess = async (payment) => {
-    const { paymentID, address } = payment;
+    const paymentID = payment.id;
+    const address = payment.purchase_units[0].shipping;
 
     await axios.post(
       '/api/payment',
@@ -122,7 +124,10 @@ function Cart() {
 
       <div className='total'>
         <h3>Tổng: $ {total}</h3>
-        <PaypalButton total={total} tranSuccess={tranSuccess} />
+        <div className='cart-payment-buttons'>
+          <PaypalButton total={total} tranSuccess={tranSuccess} />
+          <ZaloPayButton total={total} />
+        </div>
       </div>
     </div>
   );

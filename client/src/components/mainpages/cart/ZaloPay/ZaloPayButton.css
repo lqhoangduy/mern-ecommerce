@@ -1,0 +1,16 @@
+.zalopay-button {
+  padding: 2px 44px;
+  margin-left: 30px;
+  background: #017cc1;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.zalopay-button:hover {
+  opacity: 0.8;
+}
+
+.zalopay-logo {
+  height: 15px;
+  object-fit: contain;
+}
