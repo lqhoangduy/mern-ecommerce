@@ -1,0 +1,67 @@
+.info-payment {
+  width: 600px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  margin: 50px auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.payment-total-wrapper {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.payment-total-wrapper span {
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 1.1px;
+}
+
+#VND {
+  margin-left: 30px;
+  color: red;
+  font-weight: 500;
+}
+
+.form-payment-zalo {
+  width: 500px;
+}
+.form-payment-zalo input {
+  width: 100%;
+  font-size: 16px;
+  color: #555;
+}
+
+.infor {
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 400;
+  margin: 20px 0;
+  color: #555;
+}
+
+.form-payment-zalo .row {
+  margin-bottom: 15px;
+}
+
+.form-payment-zalo .row label {
+  text-transform: uppercase;
+  color: #555;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.createOrder {
+  background-color: #0a68fe;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  margin: 4px 2px;
+  border-radius: 2px;
+  width: 100%;
+  height: 40px;
+  text-transform: uppercase;
+}
