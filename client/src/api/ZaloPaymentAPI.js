@@ -54,8 +54,9 @@ function ZaloPaymentAPI() {
     axios
       .post(config.endpoint, null, { params: order })
       .then((res) => {
-        console.log(res);
-        setOrderUrl(res.data.order_url);
+        // console.log(res);
+        // setOrderUrl(res.data.order_url);
+        window.open(res.data.order_url, 'blank')
       })
       .catch((err) => console.log(err));
   };

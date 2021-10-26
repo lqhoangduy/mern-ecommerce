@@ -1,0 +1,35 @@
+.form-payment-zalo {
+    width: 500px;
+    clear: both;
+}
+.form-payment-zalo input {
+    width: 100%;
+    clear: both;
+}
+.total {
+    display: inline;
+    font-size: 20px;
+}
+#VND {
+    margin-left: 50px;
+    color: red;
+    font-weight: 500;
+}
+.infor {
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 500;
+}
+.createOrder {
+    background-color: #0A68FE;
+    border: none;
+    color: #FEFFFF;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    width: 100%;
+}

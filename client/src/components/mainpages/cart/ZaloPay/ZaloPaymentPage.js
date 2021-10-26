@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { GlobalState } from '../../../../GlobalState';
+import './ZaloPaymentPage.css';
 // import QRCode from 'qrcode.react';
 
 function ZaloPaymentPage() {
@@ -11,25 +12,28 @@ function ZaloPaymentPage() {
   const [fullname, setFullName] = useState({});
   const [address, setAddress] = useState({});
 
-  // const handleChangeInput = (e) => {
-  //   const { name, value } = e.target;
-  //   if (name === 'full_name') {
-  //     setFullName({ ...fullname, [name]: value });
-  //   } else {
-  //     setAddress({ ...address, [name]: value });
-  //   }
-  // };
+  const handleChangeInput = (e) => {
+    const { name, value } = e.target;
+    if (name === 'full_name') {
+      setFullName({ ...fullname, [name]: value });
+    } else {
+      setAddress({ ...address, [name]: value });
+    }
+  };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   createOrder(total);
-  // };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    createOrder(total);
+  };
 
   return (
     <>
       <div className='info-payment'>
-        <div>Tổng tiền thanh toán: {total}</div>
-        {/* <div>Vui lòng nhập thông tin người nhận: </div>
+        <div>
+          <span className='total'>Tổng tiền thanh toán:</span>
+          <span className='total' id="VND">{total} đ</span>
+         </div>
+        <div className='infor' >Vui lòng nhập thông tin người nhận: </div>
         <form className='form-payment-zalo' onSubmit={handleSubmit}>
           <div className='row'>
             <label htmlFor='full_name'>Tên người nhận: </label>
@@ -91,15 +95,9 @@ function ZaloPaymentPage() {
             />
           </div>
 
-          <button type='submit'>Tạo đơn hàng</button>
-        </form> */}
+          <button className="createOrder" type='submit' onClick={() => createOrder(total)}>Tạo đơn hàng</button>
+        </form>
       </div>
-
-      <button onClick={() => createOrder(total)}>Tao don hang</button>
-
-      <a href={orderUrl} target='_blank' rel='noreferrer'>
-        Chuyen huong
-      </a>
 
       {/* <button onClick={queryOrder}>Kiem tra trang thai don hang</button> */}
     </>
