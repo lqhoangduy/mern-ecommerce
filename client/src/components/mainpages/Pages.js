@@ -10,6 +10,7 @@ import Cart from './cart/Cart';
 import NotFound from './utils/not_found/NotFound';
 import Categories from './categories/Categories';
 import CreateProduct from './createProduct/CreateProduct';
+import ZaloPaymentPage from './cart/ZaloPay/ZaloPaymentPage';
 
 import { GlobalState } from '../../GlobalState';
 
@@ -58,6 +59,7 @@ function Pages() {
       />
 
       <Route path='/cart' exact component={Cart} />
+      <Route path='/zalo_payment' exact component={ZaloPaymentPage} />
 
       <Route path='*' exact component={NotFound} />
     </Switch>
