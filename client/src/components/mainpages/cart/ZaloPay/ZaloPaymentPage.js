@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { GlobalState } from '../../../../GlobalState';
 import './ZaloPaymentPage.css';
+import axios from 'axios';
 
 const initialState = {
   fullname: {
@@ -19,21 +20,70 @@ function ZaloPaymentPage() {
   const createOrder = state.zaloPaymentAPI.createOrder;
   const queryOrder = state.zaloPaymentAPI.queryOrder;
   const [total] = state.zaloPaymentAPI.total;
+  const [isPaid] = state.zaloPaymentAPI.isPaid;
+  const [appTransId] = state.zaloPaymentAPI.appTransId;
   const [fullname, setFullName] = useState(initialState.fullname);
-  const [address, setAddress] = useState(initialState.address);
+  const [addressform, setAddressForm] = useState(initialState.address);
+  // const [cart, setCart] = state.userAPI.cart;
+  const [token] = state.token;
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
     if (name === 'full_name') {
       setFullName({ ...fullname, [name]: value });
     } else {
-      setAddress({ ...address, [name]: value });
+      setAddressForm({ ...addressform, [name]: value });
     }
+  };
+
+  const addToCart = async (cart) => {
+    await axios.patch(
+      '/user/addcart',
+      { cart },
+      {
+        headers: { Authorization: token },
+      }
+    );
+  };
+
+  const tranSuccess = async () => {
+    const paymentID = appTransId;
+    const address = {
+      name: { ...fullname },
+      address: { ...addressform },
+    };
+
+    console.log(paymentID, address);
+
+    // await axios.post(
+    //   '/api/payment',
+    //   { cart, paymentID, address },
+    //   {
+    //     headers: { Authorization: token },
+    //   }
+    // );
+
+    // setCart([]);
+    // addToCart([]);
+    alert('Bạn đã đặt hàng và thanh toán thành công.');
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     createOrder(total);
+    let count = 0;
+    const query = setInterval(() => {
+      queryOrder();
+      count += 1;
+      console.log('isPaid: ', isPaid);
+      if (isPaid === true) {
+        tranSuccess();
+        return;
+      }
+      if (count === 300) {
+        clearInterval(query);
+      }
+    }, 3000);
   };
 
   const numberWithCommas = (x) => {
@@ -69,7 +119,7 @@ function ZaloPaymentPage() {
             name='address_line_1'
             id='address_line_1'
             required
-            value={address.address_line_1}
+            value={addressform.address_line_1}
             onChange={handleChangeInput}
           />
         </div>
@@ -81,7 +131,7 @@ function ZaloPaymentPage() {
             name='admin_area_2'
             id='admin_area_2'
             required
-            value={address.admin_area_2}
+            value={addressform.admin_area_2}
             onChange={handleChangeInput}
           />
         </div>
@@ -93,7 +143,7 @@ function ZaloPaymentPage() {
             name='postal_code'
             id='postal_code'
             required
-            value={address.postal_code}
+            value={addressform.postal_code}
             onChange={handleChangeInput}
           />
         </div>
@@ -105,7 +155,7 @@ function ZaloPaymentPage() {
             name='country_code'
             id='country_code'
             required
-            value={address.country_code}
+            value={addressform.country_code}
             onChange={handleChangeInput}
           />
         </div>

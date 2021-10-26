@@ -7,7 +7,9 @@ const qs = require('qs');
 function ZaloPaymentAPI() {
   const [total, setTotal] = useState(0);
   const [orderUrl, setOrderUrl] = useState('');
-  var appTransId = '';
+  const [isPaid, setIsPaid] = useState(false);
+  const [appTransId, setAppTransId] = useState('');
+  let appTransIdQuery = '';
 
   const createOrder = (amount) => {
     const config = {
@@ -32,7 +34,8 @@ function ZaloPaymentAPI() {
       description: `Payment for the order distore#${transID}`,
     };
 
-    appTransId = order.app_trans_id;
+    setAppTransId(order.app_trans_id);
+    appTransIdQuery = order.app_trans_id;
 
     // appid|app_trans_id|appuser|amount|apptime|embeddata|item
     const data =
@@ -54,6 +57,7 @@ function ZaloPaymentAPI() {
     axios
       .post(config.endpoint, null, { params: order })
       .then((res) => {
+        setIsPaid(false);
         window.open(res.data.order_url, '_blank');
       })
       .catch((err) => console.log(err));
@@ -69,7 +73,7 @@ function ZaloPaymentAPI() {
 
     let postData = {
       app_id: config.app_id,
-      app_trans_id: appTransId, // Input your app_trans_id
+      app_trans_id: appTransIdQuery, // Input your app_trans_id
     };
 
     let data =
@@ -87,7 +91,10 @@ function ZaloPaymentAPI() {
 
     axios(postConfig)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
+        console.log(response.data);
+        if (response.data.return_code === 1) {
+          setIsPaid(true);
+        }
       })
       .catch(function (error) {
         console.log(error);
@@ -97,8 +104,10 @@ function ZaloPaymentAPI() {
   return {
     total: [total, setTotal],
     createOrder: createOrder,
-    orderUrl: [orderUrl, setOrderUrl],
     queryOrder: queryOrder,
+    orderUrl: [orderUrl, setOrderUrl],
+    isPaid: [isPaid, setIsPaid],
+    appTransId: [appTransId, setAppTransId],
   };
 }
 
